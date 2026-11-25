@@ -1,0 +1,5 @@
+{
+  "name": "rerun-ancestor-log",
+  "description": "Re-check one ancestor's FamilySearch record after the user corrects the tree, then update their research log, story, tracker and Project copies. Use for \"fixed, run again\" / \"rerun\" / \"check and update\".",
+  "version": "1.0.0"
+}

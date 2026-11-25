@@ -1,0 +1,5 @@
+{
+  "name": "upload-story-memory",
+  "description": "Upload a NEW Ancestor Story PDF to FamilySearch as a Memory and tag everyone with a PID from the matching People in ... story.xlsx list. Use for \"upload the story\", \"add the story to FamilySearch\", \"post the story as a memory\".",
+  "version": "1.0.0"
+}

@@ -1,0 +1,73 @@
+{
+ "name": "John Smith",
+ "pid": "ABCD-123",
+ "birth": "about 1850, Exampleton, Countyshire, England",
+ "death": "1910, Sampletown, Ohio, USA",
+ "burial": "Sampletown Cemetery, Ohio [Possible]",
+ "file": "Log_John Smith, 1850–1910",
+ "research_date": "1 Jan 2027",
+ "header_line": "John Smith 1850–1910   •   ABCD-123   •   1 Jan 2027",
+ "footer": "John Smith • ABCD-123 • Research Log 1 Jan 2027",
+ "countries_selected": ["England and Wales", "United States"],
+ "sites_selected": ["Ancestry", "Findmypast", "Find a Grave"],
+ "places": ["Exampleton, Countyshire, England (1850–1870)", "Sampletown, Ohio (1871–1910)"],
+ "summary": "FICTIONAL EXAMPLE. John Smith was born about 1850 at Exampleton and emigrated to Ohio about 1871. No changes were made in FamilySearch by Claude.",
+ "identification": [
+  ["Document Name", "Research Log – John Smith – 1850"],
+  ["Ancestor Name", "John Smith"],
+  ["Sex", "Male [Proven, S1]"],
+  ["FamilySearch ID", "ABCD-123"],
+  ["Research Date", "1 Jan 2027"],
+  ["Living status", "Deceased [Probable, S2]"],
+  ["Relationship to researcher", "My 2nd great-grandfather (FamilySearch, View My Relationship, accessed 1 Jan 2027)"],
+  ["Father", "William Smith (not in tree)"],
+  ["Mother", "Mary Brown (not in tree)"],
+  ["Siblings", "None found"]
+ ],
+ "vital_events": [
+  ["Birth", "about 1850 [Probable, S1]", "1851 census age 1, born Exampleton."],
+  ["Death", "1910 [Possible, S2]", "Find a Grave index only."]
+ ],
+ "spouses": [["Ann Jones (not in tree)", "Married about 1872, Ohio [Possible]."]],
+ "children": [["Thomas Smith", "Born about 1873, Ohio [Possible]."]],
+ "sources_note": "“Y” = attached to ABCD-123 when read on 1 Jan 2027.",
+ "sources": [
+  [1, "“England and Wales Census, 1851,” database, FamilySearch (https://www.familysearch.org/ : accessed 1 Jan 2027), John Smith in household of William Smith, Exampleton.", "https://www.familysearch.org/", "Y", "1 Jan 2027", "Age 1, born Exampleton."],
+  [2, "“Find a Grave Index,” database, FamilySearch (https://www.familysearch.org/ : accessed 1 Jan 2027), John Smith, 1850–1910; Sampletown Cemetery, Ohio.", "https://www.familysearch.org/", "N", "1 Jan 2027", "Compiled index."]
+ ],
+ "notes": [
+  ["Summary of findings", ["Fictional example showing the data format."]],
+  ["Unresolved questions", ["Ohio death certificate not yet found."]]
+ ],
+ "searches": [
+  ["FamilySearch — View My Relationship", "ABCD-123, 1 Jan 2027", "My 2nd great-grandfather."],
+  ["Find a Grave — John Smith, b. 1850 ±1, d. 1910", "https://www.findagrave.com/memorial/search?firstname=John&lastname=Smith&birthyear=1850&birthyearfilter=1&deathyear=1910&deathyearfilter=exact, 1 Jan 2027", "1 likely result."]
+ ],
+ "tree_intro": "Suggestions for you only. No action below has been carried out.",
+ "tree_actions": [
+  ["Attach the census", ["Open https://www.familysearch.org/tree/person/details/ABCD-123 and attach S1."]]
+ ],
+ "tracker_entry": {
+  "Name": "John Smith", "PID": "ABCD-123",
+  "FamilySearch URL": "https://www.familysearch.org/tree/person/details/ABCD-123",
+  "Birth": "1850", "Death": "1910", "In my line?": "Direct ancestor",
+  "Log file": "Log_John Smith, 1850–1910.docx",
+  "Folder": "Genealogy/Smith Family/John Smith ABCD-123",
+  "Status": "Example entry", "Log date": "2027-01-01", "Story (Y/N)": "N"
+ },
+ "story": {
+  "header_line": "John Smith 1850–1910   •   ABCD-123   •   1 Jan 2027",
+  "title_line": "Life of John Smith, 1850–1910",
+  "relationship": "John Smith is Your Full Name’s 2nd great-grandfather (FamilySearch, View My Relationship, accessed 1 Jan 2027).",
+  "living": false,
+  "footer": "John Smith • ABCD-123 • Ancestor Story 1 Jan 2027",
+  "written": "1 Jan 2027",
+  "sections": [
+   ["Birth and Childhood", ["John Smith was born at Exampleton about 1850.{S1} This is a fictional example.{C1}"]],
+   ["Death and Burial", ["He died in 1910 and was buried at Sampletown.{S2}"]]
+  ],
+  "open_questions": ["His Ohio death certificate has not been found.{S2}"],
+  "related_sources": {},
+  "context_sources": {"C1": ["Example context source", "https://www.example.org/", "historical context, accessed 1 Jan 2027"]}
+ }
+}

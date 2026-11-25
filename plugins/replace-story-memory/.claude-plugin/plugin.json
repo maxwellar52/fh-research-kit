@@ -1,0 +1,5 @@
+{
+  "name": "replace-story-memory",
+  "description": "Replace a story that is already a FamilySearch Memory with its new PDF, keeping the same tags plus anyone new in the People list. Use for \"replace the story\", \"update the story memory\", \"upload the new story\".",
+  "version": "1.0.0"
+}

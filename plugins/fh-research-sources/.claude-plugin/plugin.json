@@ -1,0 +1,5 @@
+{
+  "name": "fh-research-sources",
+  "description": "Use in the Claude desktop app with Claude in Chrome connected and the Genealogy folder linked. For family history research on one ancestor: the FamilySearch relationship check and gathering sources across sites through Claude in Chrome, saving findings to the person's data JSON file.",
+  "version": "1.0.0"
+}

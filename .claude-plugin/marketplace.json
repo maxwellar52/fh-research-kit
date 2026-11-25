@@ -1,0 +1,41 @@
+{
+  "name": "fh-research-kit",
+  "owner": {
+    "name": "maxwellar52"
+  },
+  "metadata": {
+    "description": "Family history research skills for Claude: FamilySearch-centred research logs, ancestor stories and Memories uploads."
+  },
+  "plugins": [
+    {
+      "name": "fh-research-sources",
+      "source": "./plugins/fh-research-sources",
+      "description": "Use in the Claude desktop app with Claude in Chrome connected and the Genealogy folder linked. For family history research on one ancestor: the FamilySearch relationship check and gathering sources across sites through Claude in Chrome, saving findings to the person's data JSON file."
+    },
+    {
+      "name": "fh-build-log",
+      "source": "./plugins/fh-build-log",
+      "description": "Use in Claude Code inside the Genealogy folder to build or rebuild an ancestor's research log, update the research tracker and move older versions to Superseded. Run after the research is saved."
+    },
+    {
+      "name": "fh-write-story",
+      "source": "./plugins/fh-write-story",
+      "description": "Use to write an ancestor's narrative Ancestor Story from their saved data JSON file, build it with story.py and make the People in this story list. Only after the user answers yes."
+    },
+    {
+      "name": "rerun-ancestor-log",
+      "source": "./plugins/rerun-ancestor-log",
+      "description": "Re-check one ancestor's FamilySearch record after the user corrects the tree, then update their research log, story, tracker and Project copies. Use for \"fixed, run again\" / \"rerun\" / \"check and update\"."
+    },
+    {
+      "name": "upload-story-memory",
+      "source": "./plugins/upload-story-memory",
+      "description": "Upload a NEW Ancestor Story PDF to FamilySearch as a Memory and tag everyone with a PID from the matching People in ... story.xlsx list. Use for \"upload the story\", \"add the story to FamilySearch\", \"post the story as a memory\"."
+    },
+    {
+      "name": "replace-story-memory",
+      "source": "./plugins/replace-story-memory",
+      "description": "Replace a story that is already a FamilySearch Memory with its new PDF, keeping the same tags plus anyone new in the People list. Use for \"replace the story\", \"update the story memory\", \"upload the new story\"."
+    }
+  ]
+}
