@@ -36,6 +36,11 @@
       "name": "replace-story-memory",
       "source": "./plugins/replace-story-memory",
       "description": "Replace a story that is already a FamilySearch Memory with its new PDF, keeping the same tags plus anyone new in the People list. Use for \"replace the story\", \"update the story memory\", \"upload the new story\"."
+    },
+    {
+      "name": "fh-family-evaluation",
+      "source": "./plugins/fh-family-evaluation",
+      "description": "Fh Family Evaluation. Use in the Claude desktop app with Claude in Chrome connected and the Genealogy folder linked, when the user thinks a FamilySearch family has problems with its children or parents: wrong children, duplicates, grandchildren listed as children, two families mixed together, wrong sources. Checks the couple and every child against their attached sources, the census and the GRO index, then builds a Family Evaluation in Word, PDF and Markdown. Use for \"evaluate this family\", \"check this family\", \"something is wrong with these children\"."
     }
   ]
 }

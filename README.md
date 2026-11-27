@@ -15,6 +15,7 @@ Claude never edits your FamilySearch tree. It only suggests changes, and you mak
 | `fh-research-sources` | Checks the FamilySearch relationship, reads attached sources and searches FamilySearch plus the sites you tick, by country. Saves the findings to the person's data file. |
 | `fh-build-log` | Builds the research log (.docx, .pdf, .md) and updates the tracker spreadsheet. |
 | `fh-write-story` | Writes the ancestor's life story and the People list. |
+| `fh-family-evaluation` | Checks a couple and all their children in FamilySearch for wrong children, duplicates, grandchildren listed as children, mixed families and wrong sources, using the attached sources, the census child count and the GRO index. Builds a Family Evaluation (.docx, .pdf, .md). |
 | `rerun-ancestor-log` | Re-checks FamilySearch after you've fixed the tree, then updates the log and story. |
 | `upload-story-memory` | Uploads a new story PDF to FamilySearch Memories and tags the people in it. |
 | `replace-story-memory` | Replaces a story that's already a Memory, keeping its tags. |
@@ -42,6 +43,7 @@ Countries offered in `fh-research-sources`: United States, England and Wales, Sc
    /plugin install fh-research-sources@fh-research-kit
    /plugin install fh-build-log@fh-research-kit
    /plugin install fh-write-story@fh-research-kit
+   /plugin install fh-family-evaluation@fh-research-kit
    /plugin install rerun-ancestor-log@fh-research-kit
    /plugin install upload-story-memory@fh-research-kit
    /plugin install replace-story-memory@fh-research-kit
