@@ -31,6 +31,38 @@ Countries offered in `fh-research-sources`: United States, England and Wales, Sc
 - **Python 3** with two packages: `pip3 install python-docx openpyxl`
 - **LibreOffice** or **Microsoft Word**, to turn the .docx files into PDFs.
 
+## Getting the kit
+
+The project is public, so you don't need a GitHub account. Choose one of these ways.
+
+**Download a ZIP (easiest)**
+
+1. Go to https://github.com/maxwellar52/fh-research-kit
+2. Click the green **Code** button, then **Download ZIP**.
+3. Unzip it wherever you like.
+
+This is a snapshot. To get later updates, download the ZIP again.
+
+**Clone with Git (best for updates)**
+
+Git is usually already on a Mac. On Windows, install it from https://git-scm.com. In Terminal (Mac) or Git Bash / PowerShell (Windows):
+
+```
+git clone https://github.com/maxwellar52/fh-research-kit.git
+```
+
+This creates a `fh-research-kit` folder. To get updates later, run `git pull` inside that folder.
+
+**GitHub Desktop (Git without commands)**
+
+1. Install GitHub Desktop from https://desktop.github.com
+2. Choose **File → Clone repository → URL**, paste `https://github.com/maxwellar52/fh-research-kit` and pick a folder.
+3. To get updates later, click **Fetch origin**, then **Pull**.
+
+Your copy is your own. You can't change this project directly. To suggest a change, click **Fork** on the GitHub page and send a pull request.
+
+Updates never touch your own `Genealogy` folder, because you copy `genealogy-starter` out of the kit (see Setup). After an update, copy any new scripts from `genealogy-starter/_tools` into your `Genealogy/_tools` yourself.
+
 ## Setup
 
 1. Copy the `genealogy-starter` folder to where you keep your research and rename it `Genealogy`.
