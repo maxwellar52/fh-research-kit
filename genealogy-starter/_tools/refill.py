@@ -8,7 +8,8 @@ from docx.oxml.ns import qn
 from docx.oxml import OxmlElement
 from docx.opc.constants import RELATIONSHIP_TYPE as RT
 
-URL_RE = re.compile(r'(https?://\S+?)(?=\s|$)')
+# A URL ends before spaces and before a final . , ; : ) or ] so that punctuation stays outside the link.
+URL_RE = re.compile(r'(https?://[^\s<>]+[^\s<>.,;:)\]])')
 base, data_path, out = sys.argv[1:4]
 D = json.load(open(data_path, encoding='utf-8'))
 doc = Document(base)
@@ -161,5 +162,15 @@ for i, (title, steps) in enumerate(D['tree_actions'], 1):
     for s in steps:
         add('STEP', s)
 
+def prune_links(p):
+    """Drop link records the text no longer uses (left over from the base file)."""
+    used = set(re.findall(r'r:id="(rId\d+)"', p._element.xml))
+    for rid in [k for k, r in p.rels.items() if r.reltype == RT.HYPERLINK and k not in used]:
+        p.rels.pop(rid)
+
+
+prune_links(doc.part)
+for sec in doc.sections:
+    prune_links(sec.footer.part)
 doc.save(out)
 print('saved', out)

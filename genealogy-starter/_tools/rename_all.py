@@ -83,11 +83,17 @@ for jp in sorted(glob.glob(os.path.join(root, '*', '*', 'json_data', 'data_*.jso
     if changed:
         out.append(f'{rel}:  JSON updated ({os.path.basename(jp)})')
         if apply:
-            json.dump(d, open(jp, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+            with open(jp, 'w', encoding='utf-8') as fh:
+                json.dump(d, fh, ensure_ascii=False, indent=1)
 
 print(('APPLIED' if apply else 'DRY RUN (nothing changed; add --apply to do it)') + f' — {root}\n')
 print('\n'.join(out) or 'Nothing to rename.')
 if problems:
     print('\nCheck these:\n' + '\n'.join(problems))
+if any('JSON updated' in line for line in out):
+    print('\nThe tracker spreadsheet is not changed by this script. ' +
+          ('Run tracker.py for each person whose JSON was updated, ' if apply else 'After --apply, run tracker.py for each person whose JSON is updated, ') +
+          'e.g.  python3 tracker.py ../_AAResearch_Tracker.xlsx "<person folder>/json_data/data_<Name>.json"')
 if apply:
-    open(os.path.join(root, '_tools', 'rename_log.txt'), 'w', encoding='utf-8').write('\n'.join(out + [''] + problems))
+    with open(os.path.join(root, '_tools', 'rename_log.txt'), 'w', encoding='utf-8') as fh:
+        fh.write('\n'.join(out + [''] + problems))

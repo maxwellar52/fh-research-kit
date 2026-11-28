@@ -156,6 +156,16 @@ for sec in doc.sections:
                     fp._p.remove(ch)
             write(fp._p, D['footer'], the_part=sec.footer.part)
 
+def prune_links(p):
+    """Drop link records the text no longer uses (left over from the template)."""
+    used = set(re.findall(r'r:id="(rId\d+)"', p._element.xml))
+    for rid in [k for k, r in p.rels.items() if r.reltype == RT.HYPERLINK and k not in used]:
+        p.rels.pop(rid)
+
+
+prune_links(part)
+for sec in doc.sections:
+    prune_links(sec.footer.part)
 out_docx = Path(out_base + '.docx')
 doc.save(str(out_docx))
 print('saved', out_docx)

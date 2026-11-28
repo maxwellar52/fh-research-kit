@@ -20,7 +20,8 @@ base, data_path, out = sys.argv[1:4]
 D = json.load(open(data_path, encoding='utf-8'))
 S = D['story']
 MARK = re.compile(r'((?:\{[A-Za-z0-9:]+\})+)')
-URL_RE = re.compile(r'(https?://\S+?)(?=\s|$)')
+# A URL ends before spaces and before a final . , ; : ) or ] so that punctuation stays outside the link.
+URL_RE = re.compile(r'(https?://[^\s<>]+[^\s<>.,;:)\]])')
 
 # ---- note numbering -------------------------------------------------------
 src = {f"S{r[0]}": r for r in D['sources']}
@@ -148,7 +149,7 @@ for sec in doc.sections:
 
 # ---- build ----------------------------------------------------------------
 GEN = (f"This story was generated on {S['written']} using Claude AI, which also generated the "
-       "Notes section with the URL's to sources researched for this story.")
+       "Notes section with the URLs to sources researched for this story.")
 md = [f"# {S['title_line']}", '', f'*{GEN}*', '']
 add('TITLE', S['title_line'])
 add('SUB', GEN)
@@ -183,6 +184,16 @@ for n, title, url, where in notes:
 md.append('')
 add('N', key_line, italic=True); md += [f'*{key_line}*', '']
 
+def prune_links(p):
+    """Drop link records the text no longer uses (left over from the log this story is styled on)."""
+    used = set(re.findall(r'r:id="(rId\d+)"', p._element.xml))
+    for rid in [k for k, r in p.rels.items() if r.reltype == RT.HYPERLINK and k not in used]:
+        p.rels.pop(rid)
+
+
+prune_links(doc.part)
+for sec in doc.sections:
+    prune_links(sec.footer.part)
 doc.save(out + '.docx')
 open(out + '.md', 'w', encoding='utf-8').write('\n'.join(md))
 print('saved', out + '.docx', out + '.md', f'({len(notes)} notes)')
