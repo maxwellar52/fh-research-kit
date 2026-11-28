@@ -1,6 +1,6 @@
 ---
 name: "replace-story-memory"
-description: "Replace a story that is already a FamilySearch Memory with its new PDF, keeping the same tags plus anyone new in the People list. Use for \"replace the story\", \"update the story memory\", \"upload the new story\"."
+description: "Replace a story that is already a FamilySearch Memory with its new PDF, keeping the old tags plus anyone new. Use for \"replace the story\", \"update the story memory\", \"upload the new story\"."
 ---
 
 # Replace an Ancestor Story Memory on FamilySearch
@@ -19,12 +19,12 @@ The user's request to replace the story is their approval to upload the new Memo
 2. In <Surname> Family/<Full Name> <PID>/ find:
    - the current story PDF: "Story_<Full Name>, <birth year>–<death year>.pdf" (maiden name with married names in parentheses, e.g. "Story_Mary Ann Smith (Jones), 1859–1925.pdf"). Older stories may still be named "Ancestor_Story_<Full Name> <birth year>.pdf"; use whichever is in the folder (not the Superseded/ copies).
    - People in <Full Name> <birth year> story.xlsx
-3. If the story PDF is missing, stop and tell the user. If the PDF is older than the story .docx or the Project's claude/ .md copy, say so and ask before going on.
+3. If the story PDF is missing, stop and tell the user. If the PDF is older than the story .docx (or than the Project's claude/ .md copy, when that can be reached), say so and ask before going on.
 4. If the story starts with "LIVING – do not upload to Memories", stop. Never upload it.
 
 ## 2. Read the People list
 
-1. Stage the .xlsx and read every row: Name, Relationship, PID, FamilySearch URL.
+1. Read every row of the .xlsx with openpyxl: Name, Relationship, PID, FamilySearch URL.
 2. Keep the rows with a FamilySearch PID (e.g. ABCD-123). Skip "not in tree" and blank PIDs, but list them in the report.
 3. Remove duplicate PIDs. Put the target ancestor first.
 

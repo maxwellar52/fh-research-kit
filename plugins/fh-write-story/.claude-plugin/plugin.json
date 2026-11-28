@@ -1,5 +1,5 @@
 {
   "name": "fh-write-story",
-  "description": "Use to write an ancestor's narrative Ancestor Story from their saved data JSON file, build it with story.py and make the People in this story list. Only after the user answers yes.",
-  "version": "1.0.0"
+  "description": "Write an ancestor's life story from their data JSON, build it with story.py and make the People in this story list. Use only after the user says yes to the story.",
+  "version": "1.0.1"
 }

@@ -1,6 +1,6 @@
 ---
 name: "fh-family-evaluation"
-description: "Fh Family Evaluation. Use in the Claude desktop app with Claude in Chrome connected and the Genealogy folder linked, when the user thinks a FamilySearch family has problems with its children or parents: wrong children, duplicates, grandchildren listed as children, two families mixed together, wrong sources. Checks the couple and every child against their attached sources, the census and the GRO index, then builds a Family Evaluation in Word, PDF and Markdown. Use for \"evaluate this family\", \"check this family\", \"something is wrong with these children\"."
+description: "Check a FamilySearch couple and all their children for wrong children, duplicates, grandchildren or mixed families, using sources, census and the GRO index, and build a Family Evaluation. Use for \"evaluate this family\"."
 ---
 
 # Fh Family Evaluation: check a couple and their children
@@ -34,27 +34,7 @@ Open `https://www.familysearch.org/en/tree/person/details/<PID>` and read it wit
 
 ### 2. Read every attached source
 
-Do this for the father, the mother and **every** child. The source panel's details are not in `<main>`, and calling FamilySearch's API with a session token is blocked. So click each source and read the panel from the page. Save this helper once per session; it stays in the site's localStorage across pages:
-
-```js
-localStorage.__x = String.raw`await new Promise(r=>setTimeout(r,2500));
-const main=document.querySelector('main').innerText;
-const vit=main.split('Sources (')[0].replace(/Quality Score[\s\S]*?Vitals\n/,'').replace(/Last Changed:[^\n]*\n[A-Z]\n[^\n]*\n/g,'').replace(/Detail View\n/g,'').replace(/\n•\n/g,' ').replace(/\n+/g,' | ');
-const btns=[...document.querySelectorAll('button')].filter(b=>/^\d{4}\s*•/.test(b.innerText.trim()));
-const drop=/^(Book Number|Line Number|Page Number|Piece\/Folio|Registration Number|Household Identifier|Event Type|Event Place \(Original\)|Folio Number.*|Sub-District.*|Enumeration District|District Number|Record Type|Document Type|Source Page Type|Schedule Type|Series Name|Source Details|Affiliate Film Number|Entry Number)$/;
-const out=[];
-for(const b of btns.slice(0,22)){ b.click(); await new Promise(r=>setTimeout(r,1300));
- const h=[...document.querySelectorAll('h2,h3,div')].find(e=>e.innerText?.trim()==='Source Information');
- let p=h; for(let i=0;i<6&&p;i++){p=p.parentElement; if(p.innerText.length>300) break;}
- let t=(p?p.innerText:'').replace(/Citation Details[\s\S]*/,'').replace(/Source Date\n[\s\S]*?(Reason This Source Is Attached:)/,'$1').replace(/https?:\S+/g,'').replace(/[?&=]/g,' ');
- const L=t.split('\n').map(x=>x.trim()).filter(x=>x&&!/^(Source Information|VIEW|EDIT|REVIEW ATTACHMENTS|DETACH|Tags|\+ ADD TAG|\+ ADD|DISMISS|VIEW IMAGE|VIEW ORIGINAL DOCUMENT|Check Image Availability|Image Unavailable|No Image Available|No reason provided\.|Reason This Source Is Attached:|Birth|Sex|Name|Death|Burial|Marriage|Christening|Relationships|Residence|Male|Female|UNFINISHED ATTACHMENTS|This source has not been attached to all people found in the record\.)$/.test(x)&&!/person details$|^View on/.test(x));
- const o=[];for(let i=0;i<L.length;i++){if(drop.test(L[i])){i++;continue;}o.push(L[i]);}
- out.push(o.join('|').replace(/Birth Year \(Estimated\)/g,'BYE').replace(/Relationship to Head of Household/g,'Rel').replace(/Event Place/g,'Pl').replace(/Event Date/g,'Dt'));
-}
-const m=document.querySelector('main'); const pre=document.createElement('pre');
-pre.textContent='VITALS: '+vit+'\nSOURCES('+btns.length+'):\n'+out.map((s,i)=>i+') '+s).join('\n');
-m.innerHTML=''; m.appendChild(pre); return 'ok '+btns.length;`; 'saved'
-```
+Do this for the father, the mother and **every** child. The source panel's details are not in `<main>`, and calling FamilySearch's API with a session token is blocked. So click each source and read the panel from the page. Once per session, run the whole of `Genealogy/_tools/fs_sources_helper.js` in `javascript_tool` on any familysearch.org page. It saves the helper in the site's localStorage, where it stays across pages.
 
 Then, for each person, run one `browser_batch`:
 
@@ -116,15 +96,14 @@ Every URL must be a full https link; `evaluate.py` makes them clickable.
 
 ### 7. Build
 
-From the father's folder, run:
+1. If an earlier evaluation of this family is in the folder, first move its .docx, .pdf and .md into the folder's `Superseded/` with the date added, for example "Family Evaluation_<Father> and <Mother>, m. <year> (2026-11-26).docx". The build overwrites files of the same name.
+2. From the father's folder, run (the command is complete, so don't open the script):
 
 ```
 python3 ../../_tools/evaluate.py "json_data/evaldata_<Father Full Name>.json" "Family Evaluation_<Father Full Name> and <Mother Full Name>, m. <marriage year>" --pdf
 ```
 
-This writes the .docx, .md and .pdf. The PDF is made by Microsoft Word on the Mac, or by LibreOffice (`soffice`) on Windows. If neither works, tell the user to open the .docx in Word and Save as PDF.
-
-Before replacing an earlier evaluation, move the old .docx, .pdf and .md into the folder's `Superseded/` with the date added, for example "Family Evaluation_<Father> and <Mother>, m. <year> (2026-11-26).docx".
+This writes the .docx, .md and .pdf. The PDF is made by Microsoft Word on a Mac, otherwise by LibreOffice. If it reports "PDF NOT MADE", run `python3 ../../_tools/topdf.py "<file>.docx"`, and if that fails too, tell the user to open the .docx in Word and save it as PDF.
 
 ### 8. Finish
 

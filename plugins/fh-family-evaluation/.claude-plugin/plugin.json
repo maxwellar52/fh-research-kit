@@ -1,5 +1,5 @@
 {
   "name": "fh-family-evaluation",
-  "version": "1.0.0",
-  "description": "Fh Family Evaluation. Use in the Claude desktop app with Claude in Chrome connected and the Genealogy folder linked, when the user thinks a FamilySearch family has problems with its children or parents: wrong children, duplicates, grandchildren listed as children, two families mixed together, wrong sources. Checks the couple and every child against their attached sources, the census and the GRO index, then builds a Family Evaluation in Word, PDF and Markdown. Use for \"evaluate this family\", \"check this family\", \"something is wrong with these children\"."
+  "version": "1.0.1",
+  "description": "Check a FamilySearch couple and all their children for wrong children, duplicates, grandchildren or mixed families, using sources, census and the GRO index, and build a Family Evaluation. Use for \"evaluate this family\"."
 }

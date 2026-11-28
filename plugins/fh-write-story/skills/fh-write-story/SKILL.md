@@ -1,6 +1,6 @@
 ---
 name: "fh-write-story"
-description: "Use to write an ancestor's narrative Ancestor Story from their saved data JSON file, build it with story.py and make the People in this story list. Only after the user answers yes."
+description: "Write an ancestor's life story from their data JSON, build it with story.py and make the People in this story list. Use only after the user says yes to the story."
 ---
 
 # Family history: write the Ancestor Story
@@ -12,7 +12,7 @@ Run this only after the research log is built and the user has answered the Yes/
 ## If the user says no
 
 - Set "Story (Y/N)" to N in _AAResearch_Tracker.xlsx.
-- Add "Story declined <date>" to the log's Research Notes.
+- Add "Story declined <date>" to the `notes` in the data JSON, then rebuild the log with refill.py and topdf.py (commands in fh-build-log) so the note shows. A log built minutes ago in this session needs no Superseded copy.
 - If no answer is given (for example in an unattended run), enter "N – awaiting answer" in the tracker, do not add the declined note, and say it is waiting.
 
 ## If the user says yes
@@ -37,8 +37,12 @@ Run this only after the research log is built and the user has answered the Yes/
 
 ## Build and save
 
-- Build with _tools/story.py.
-- File name: Story_<Full Name>, <birth year>–<death year>. Save .docx, .pdf and .md in the same folder as the log. The .md is a copy for your claude.ai Project, if you use one (otherwise save it in `Claude outputs/`); don't leave it in the person folder.
+- The `story` section of the data JSON holds: `file` ("Story_<Full Name>, <years>"), `title_line`, `header_line`, `relationship`, `living` (true/false), `written` (date), `footer` ("… (rev. N)" after the first version), `sections` [[heading, [paragraph, …]], …], `open_questions` [text, …], `context_sources` {"C1": [short title, URL, note], …} and, for sources from another person's log, `related_sources` {"KEY": [short title, URL, note]}.
+- Cite inside the text with markers: `{S12}` is source 12 in this person's log, `{C1}` a context source, `{KEY}` a related source. story.py numbers the notes in order of first use and reuses a number when a source is cited again.
+- Build from Genealogy/_tools (don't open the scripts to learn their options; these commands are complete):
+  - `python3 story.py "../<person folder>/<log>.docx" "<json>" "../<person folder>/<story>"` (no extension on the last name: it writes the .docx and the .md)
+  - `python3 topdf.py "../<person folder>/<story>.docx"`
+- File name: Story_<Full Name>, <birth year>–<death year>. The .docx and .pdf stay in the person folder. Move the .md to the Project's claude/ folder if a Project tool is available, otherwise to Claude outputs/ (tell the user to add it to the Project). Never leave it in the person folder.
 - Move any replaced story into Superseded/ with the date in its name, as the fh-build-log skill describes.
 - Set "Story (Y/N)" to Y in the tracker.
-- Also save "People in <Full Name> <birth year> story.xlsx" in the same folder, e.g. "People in Mary Ann Smith (Jones) 1859 story.xlsx". List everyone named in the story with their relationship to the ancestor, their FamilySearch PID (or "not in tree") and a clickable FamilySearch link. Leave out <Researcher Name>.
+- Also save "People in <Full Name> <birth year> story.xlsx" in the same folder, e.g. "People in Mary Ann Smith (Jones) 1859 story.xlsx". Make it with openpyxl: one sheet, header row "Name", "Relationship to <Full Name>", "PID", "FamilySearch URL", then one row per person named in the story, the ancestor first. PID is "not in tree" when there is none. Make each URL (https://www.familysearch.org/tree/person/details/<PID>) a clickable hyperlink. Leave out <Researcher Name>.

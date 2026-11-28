@@ -1,6 +1,6 @@
 ---
 name: "fh-build-log"
-description: "Use in Claude Code inside the Genealogy folder to build or rebuild an ancestor's research log, update the research tracker and move older versions to Superseded. Run after the research is saved."
+description: "Build or rebuild an ancestor's research log (Word, PDF, Markdown) from their saved data JSON in Claude Code, update the tracker and supersede older versions. Use for \"build the log\"."
 ---
 
 # Family history: build the research log
@@ -11,7 +11,7 @@ Run this in Claude Code, opened in the Genealogy folder. Use the scripts in _too
 
 1. Confirm the folder has _tools and _AAResearch_Tracker.xlsx in its root. If not, stop and ask the user.
 2. Ignore the "._" files macOS leaves behind.
-3. Check the copy is current. Compare the date on the header line of json_data/data_<Full Name>.json with the header line of the Project's claude/ .md copy. If the folder copy is older, tell the user and ask before continuing.
+3. Check the copy is current, if the Project's claude/ .md copy can be reached from this session: compare the date on the header line of json_data/data_<Full Name>.json with the header line of that .md copy. If the folder copy is older, tell the user and ask before continuing. If the Project copy can't be reached, skip this check.
 
 ## Folder and file names
 
@@ -24,8 +24,12 @@ Run this in Claude Code, opened in the Genealogy folder. Use the scripts in _too
 
 ## Build
 
-1. Build with _tools/refill.py from _tools/base/Ancestor_Research_Log_TEMPLATE.docx. Keep formatting identical.
-2. Produce .docx, .pdf and .md. The .md is a copy for your claude.ai Project, if you use one (otherwise save it in `Claude outputs/`); don't leave it in the person folder.
+1. Build with the scripts, running these from Genealogy/_tools (`<json>` is `../<person folder>/json_data/data_<Full Name>.json`, `<log>` is the file name without extension):
+   - `python3 refill.py base/Ancestor_Research_Log_TEMPLATE.docx "<json>" "../<person folder>/<log>.docx"`
+   - `python3 topdf.py "../<person folder>/<log>.docx"`
+   - `python3 makemd.py "<json>" "../Claude outputs/<log>.md"`
+   - `python3 tracker.py ../_AAResearch_Tracker.xlsx "<json>"` Don't open the scripts to learn their options; these commands are complete.
+2. The .md is a copy for the claude.ai Project. If a Project tool is available, put it in the Project's claude/ folder and delete the copy in Claude outputs/. Otherwise leave it in Claude outputs/ and tell the user to add it to the Project. Never leave it in the person folder.
 3. Use portrait layout and these seven sections, in this order: Identification; Vital Events; Spouse(s); Child(ren); Sources; Research Notes; Tree Actions Suggested.
 4. Identification: if the person is living, add "LIVING – do not upload to Memories".
 5. Sources table: six columns, including "Attached in FS? (Y/N)". Show the full clickable URL for every source, including ones already attached.

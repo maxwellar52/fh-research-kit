@@ -1,6 +1,6 @@
 ---
 name: "fh-research-sources"
-description: "Use in the Claude desktop app with Claude in Chrome connected and the Genealogy folder linked. For family history research on one ancestor: the FamilySearch relationship check and gathering sources across sites through Claude in Chrome, saving findings to the person's data JSON file."
+description: "Research one ancestor through Claude in Chrome: FamilySearch relationship check, attached sources, and searches of the record sites the user picks. Saves the person's data JSON. Use for \"research John Smith ABCD-123\" or \"research this ancestor\"."
 ---
 
 # Family history research: sources and relationship
@@ -13,7 +13,7 @@ Use Claude in Chrome for this step. Do not build logs, stories or tracker entrie
 
 Before anything else, confirm all of these:
 
-1. Claude in Chrome tools are available: tools named `mcp__claude-in-chrome__*`, or an `enable__mcp__claude-in-chrome` tool that turns them on. If a different Chrome is connected, switch to it and say so in one line.
+1. Claude in Chrome tools are available: tools named `mcp__claude-in-chrome__*`, or an `enable__mcp__claude-in-chrome` tool that turns them on. Load the ones you need in one ToolSearch call (`navigate`, `get_page_text`, `find`, `computer`, `javascript_tool`, `tabs_create_mcp`). If a different Chrome is connected, switch to it and say so in one line.
 2. The Genealogy folder can be reached on the user's computer (the `genealogy_root` folder named in `genealogy_config.json`), with `_tools` and `_AAResearch_Tracker.xlsx` in its root.
 3. The person's folder or json_data/ folder can be written to, so the findings can be saved.
 
@@ -103,5 +103,15 @@ If anything is missing, stop before doing any work. Do not run part of the skill
 6. **Scope.** Research the target ancestor only. Offer to create logs for spouses or children found along the way. Never edit FamilySearch. Suggest changes only; the user makes them.
 
 7. **Save.** Write the findings to json_data/data_<Full Name>.json in the person's folder, with the date on the header line.
+   - **Folder** (create it if needed, reusing an existing surname folder): `Genealogy/<Surname> Family/<Full Name> <PID>/`. If step 1 found no relationship, use `Genealogy/XXNot in my line/<Full Name> <PID>/`. A spouse related by marriage goes under their own surname's Family folder. Folder and JSON names leave out the married name in parentheses.
+   - **Fields** (the build scripts read exactly these; tables are lists of rows):
+     - `name`, `pid`, `birth`, `death`, `burial`, `research_date`, `places`, `countries_selected`, `sites_selected`
+     - `file`: "Log_<Full Name>, <birth year>–<death year>" (name and date rules as in fh-build-log)
+     - `header_line`, `summary`, `footer` ("<Full Name> • <PID> • Research Log <date>"), `sources_note`, `tree_intro`: text
+     - `identification`: [field, details] · `vital_events`: [event, date, location and evidence] · `spouses`: [name, marriage date and place / notes] · `children`: [name, identification and notes]
+     - `sources`: [#, full citation, URL, Attached in FS? (Y/N), date accessed, findings / notes]
+     - `notes`: [heading, [paragraph, …]] · `searches`: [site / collection, search terms ("—" if none), result] · `tree_actions`: [title, [step, …]]
+     - `tracker_entry`: {"Name", "PID", "FamilySearch URL", "Birth", "Death", "In my line?", "Log file", "Folder", "Status", "Log date", "Superseded copy", "Story (Y/N)"}
+   - Every URL must be a full https link. Put a space, not punctuation, straight after a URL where you can.
 
 When finished, tell the user the research is saved and that the next step is the fh-build-log skill in Claude Code.

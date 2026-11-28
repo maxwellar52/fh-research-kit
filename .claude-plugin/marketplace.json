@@ -10,37 +10,37 @@
     {
       "name": "fh-research-sources",
       "source": "./plugins/fh-research-sources",
-      "description": "Use in the Claude desktop app with Claude in Chrome connected and the Genealogy folder linked. For family history research on one ancestor: the FamilySearch relationship check and gathering sources across sites through Claude in Chrome, saving findings to the person's data JSON file."
+      "description": "Research one ancestor through Claude in Chrome: FamilySearch relationship check, attached sources, and searches of the record sites the user picks. Saves the person's data JSON. Use for \"research John Smith ABCD-123\" or \"research this ancestor\"."
     },
     {
       "name": "fh-build-log",
       "source": "./plugins/fh-build-log",
-      "description": "Use in Claude Code inside the Genealogy folder to build or rebuild an ancestor's research log, update the research tracker and move older versions to Superseded. Run after the research is saved."
+      "description": "Build or rebuild an ancestor's research log (Word, PDF, Markdown) from their saved data JSON in Claude Code, update the tracker and supersede older versions. Use for \"build the log\"."
     },
     {
       "name": "fh-write-story",
       "source": "./plugins/fh-write-story",
-      "description": "Use to write an ancestor's narrative Ancestor Story from their saved data JSON file, build it with story.py and make the People in this story list. Only after the user answers yes."
+      "description": "Write an ancestor's life story from their data JSON, build it with story.py and make the People in this story list. Use only after the user says yes to the story."
     },
     {
       "name": "rerun-ancestor-log",
       "source": "./plugins/rerun-ancestor-log",
-      "description": "Re-check one ancestor's FamilySearch record after the user corrects the tree, then update their research log, story, tracker and Project copies. Use for \"fixed, run again\" / \"rerun\" / \"check and update\"."
+      "description": "Re-check one ancestor's FamilySearch record after the user fixes the tree, then update their log, story, People list and tracker. Use for \"fixed, run again\", \"rerun\", \"check and update\"."
     },
     {
       "name": "upload-story-memory",
       "source": "./plugins/upload-story-memory",
-      "description": "Upload a NEW Ancestor Story PDF to FamilySearch as a Memory and tag everyone with a PID from the matching People in ... story.xlsx list. Use for \"upload the story\", \"add the story to FamilySearch\", \"post the story as a memory\"."
+      "description": "Upload a new story PDF to FamilySearch Memories and tag everyone with a PID in its People list. Use for \"upload the story\", \"add the story to FamilySearch\", \"post the story as a memory\"."
     },
     {
       "name": "replace-story-memory",
       "source": "./plugins/replace-story-memory",
-      "description": "Replace a story that is already a FamilySearch Memory with its new PDF, keeping the same tags plus anyone new in the People list. Use for \"replace the story\", \"update the story memory\", \"upload the new story\"."
+      "description": "Replace a story that is already a FamilySearch Memory with its new PDF, keeping the old tags plus anyone new. Use for \"replace the story\", \"update the story memory\", \"upload the new story\"."
     },
     {
       "name": "fh-family-evaluation",
       "source": "./plugins/fh-family-evaluation",
-      "description": "Fh Family Evaluation. Use in the Claude desktop app with Claude in Chrome connected and the Genealogy folder linked, when the user thinks a FamilySearch family has problems with its children or parents: wrong children, duplicates, grandchildren listed as children, two families mixed together, wrong sources. Checks the couple and every child against their attached sources, the census and the GRO index, then builds a Family Evaluation in Word, PDF and Markdown. Use for \"evaluate this family\", \"check this family\", \"something is wrong with these children\"."
+      "description": "Check a FamilySearch couple and all their children for wrong children, duplicates, grandchildren or mixed families, using sources, census and the GRO index, and build a Family Evaluation. Use for \"evaluate this family\"."
     }
   ],
   "description": "Family history research skills for Claude: research logs, ancestor stories and Memories uploads for people who use the FamilySearch website."

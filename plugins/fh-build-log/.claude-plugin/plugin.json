@@ -1,5 +1,5 @@
 {
   "name": "fh-build-log",
-  "description": "Use in Claude Code inside the Genealogy folder to build or rebuild an ancestor's research log, update the research tracker and move older versions to Superseded. Run after the research is saved.",
-  "version": "1.0.0"
+  "description": "Build or rebuild an ancestor's research log (Word, PDF, Markdown) from their saved data JSON in Claude Code, update the tracker and supersede older versions. Use for \"build the log\".",
+  "version": "1.0.1"
 }

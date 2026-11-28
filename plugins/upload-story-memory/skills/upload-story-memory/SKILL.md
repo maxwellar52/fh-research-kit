@@ -1,6 +1,6 @@
 ---
 name: "upload-story-memory"
-description: "Upload a NEW Ancestor Story PDF to FamilySearch as a Memory and tag everyone with a PID from the matching People in ... story.xlsx list. Use for \"upload the story\", \"add the story to FamilySearch\", \"post the story as a memory\"."
+description: "Upload a new story PDF to FamilySearch Memories and tag everyone with a PID in its People list. Use for \"upload the story\", \"add the story to FamilySearch\", \"post the story as a memory\"."
 ---
 
 # Upload a new Ancestor Story to FamilySearch Memories
@@ -17,12 +17,12 @@ The user's request to upload the story is their approval to add this Memory and 
 2. In <Surname> Family/<Full Name> <PID>/ find:
    - the story PDF: "Story_<Full Name>, <birth year>–<death year>.pdf" (maiden name with married names in parentheses, e.g. "Story_Mary Ann Smith (Jones), 1859–1925.pdf"). Older stories may still be named "Ancestor_Story_<Full Name> <birth year>.pdf"; use whichever is in the folder (not the Superseded/ copies).
    - People in <Full Name> <birth year> story.xlsx
-3. If either file is missing, stop and tell the user. If the story PDF is older than the .docx or the Project's claude/ .md copy, say so and ask before uploading.
+3. If either file is missing, stop and tell the user. If the story PDF is older than the story .docx (or than the Project's claude/ .md copy, when that can be reached), say so and ask before uploading.
 4. If the story starts with "LIVING – do not upload to Memories", stop. Never upload it.
 
 ## 2. Read the People list
 
-1. Stage the .xlsx and read every row: Name, Relationship, PID, FamilySearch URL.
+1. Read every row of the .xlsx with openpyxl: Name, Relationship, PID, FamilySearch URL.
 2. Keep the rows whose PID looks like a FamilySearch PID (e.g. ABCD-123). Skip "not in tree" rows and blank PIDs, but list them in the report.
 3. Remove duplicate PIDs. Put the target ancestor first.
 
