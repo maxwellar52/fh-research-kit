@@ -4,7 +4,7 @@
     "name": "maxwellar52"
   },
   "metadata": {
-    "description": "Family history research skills for Claude: FamilySearch-centred research logs, ancestor stories and Memories uploads."
+    "description": "Family history research skills for Claude: research logs, ancestor stories and Memories uploads for people who use the FamilySearch website."
   },
   "plugins": [
     {
@@ -42,5 +42,6 @@
       "source": "./plugins/fh-family-evaluation",
       "description": "Fh Family Evaluation. Use in the Claude desktop app with Claude in Chrome connected and the Genealogy folder linked, when the user thinks a FamilySearch family has problems with its children or parents: wrong children, duplicates, grandchildren listed as children, two families mixed together, wrong sources. Checks the couple and every child against their attached sources, the census and the GRO index, then builds a Family Evaluation in Word, PDF and Markdown. Use for \"evaluate this family\", \"check this family\", \"something is wrong with these children\"."
     }
-  ]
+  ],
+  "description": "Family history research skills for Claude: research logs, ancestor stories and Memories uploads for people who use the FamilySearch website."
 }

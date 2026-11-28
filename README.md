@@ -1,6 +1,6 @@
 # fh-research-kit
 
-Family history research skills for Claude. They research one ancestor at a time on FamilySearch and other record sites, then produce:
+Family history research skills for Claude. They research one ancestor at a time on the FamilySearch website and other record sites, then produce:
 
 - a research log (Word and PDF) with cited sources, evidence ratings and suggested FamilySearch tree fixes
 - a readable life story of the ancestor, with numbered notes
@@ -95,6 +95,10 @@ Updates never touch your own `Genealogy` folder, because you copy `genealogy-sta
 ## Privacy
 
 Your Genealogy folder holds details of real people, some of them living. Keep it out of this repository and out of any public place. Logs and stories for living people are marked "LIVING – do not upload to Memories", and the upload skills refuse them.
+
+## Trademark
+
+FamilySearch is a trademark of Intellectual Reserve, Inc. fh-research-kit is an independent project. It is not made, approved or supported by FamilySearch.
 
 ## Licence
 
